@@ -10,44 +10,29 @@ namespace VigenereCipher
     {
         static void Main(string[] args)
         {
-            char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ".ToCharArray();
 
+            Vigenere cipher = new Vigenere();
 
-            int i, j, counter;
-            char[,] arr1 = new char[29, 29];
+            Console.WriteLine("Letter matrix:");
+            Console.WriteLine("_____________________________________________________________");
+            cipher.PrintMatrix();
+            Console.WriteLine("_____________________________________________________________");
+            Console.WriteLine();
 
-            Console.Write("\n\nRead a 2D array of size 3x3 and print the matrix :\n");
-            Console.Write("------------------------------------------------------\n");
+            string cipherText = "Making a cipher is hard";
+            string cipherKey = "tikki";
 
+            Console.WriteLine("Text to cipher: ");
+            Console.WriteLine("..............." + cipherText);
 
-            /* Stored values into the array*/
-            Console.Write("Input elements in the matrix :\n");
-            for (i = 0; i < 29; i++)
-            {
-                for (j = 0; j < 29; j++)
-                {
-                    arr1[i, j] = alphabet[j];
-                }
-            }
+            string encipheredText = cipher.Encipher(cipherText, cipherKey);
+            Console.WriteLine("Ciphered text: ");
+            Console.WriteLine("..............." + encipheredText);
 
-            for (i = 0; i < 29; i++)
-            {
-                for (j = 0; j < 29; j++)
-                {
-
-                    counter = j + i;
-                    if (counter >= 29)
-                    {
-                        counter = 0;
-                        counter++;
-                    }
-
-                    Console.Write(arr1[i, counter] + " ");
-                    counter++;
-                }
-                Console.WriteLine();
-
-            }
+            string decipheredText = cipher.Decipher(encipheredText, cipherKey);
+            Console.WriteLine("Deciphered text: ");
+            Console.WriteLine("..............." + decipheredText);
+            Console.WriteLine();
 
             Console.Read();
         }
